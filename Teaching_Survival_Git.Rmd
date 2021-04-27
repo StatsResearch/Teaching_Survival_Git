@@ -1,0 +1,145 @@
+---
+title: "Teaching Survival Git"
+subtitle: "Enough Git to Survive as a Data Scientist"
+author: "Rob Donald"
+date: "`r format(Sys.time(), '%A %d %B %Y')`"
+
+output:
+  pdf_document:
+    fig_caption: yes
+    toc: yes
+    toc_depth: '2'
+urlcolor: blue
+---
+
+```{=tex}
+\def\shrug{\texttt{\raisebox{0.75em}{\char`\_}\char`\\\char`\_\kern-0.5ex(\kern-0.25ex\raisebox{0.25ex}
+{\rotatebox{45}{\raisebox{-.75ex}"\kern-1.5ex\rotatebox{-90})}}\kern-0.5ex)\kern-0.5ex\char`\_/\raisebox{0.75em}
+{\char`\_}}}
+```
+
+```{r setup, include=FALSE}
+# The fig.pos = 'h' tells LaTeX to put the figure where you ask for it
+knitr::opts_chunk$set(echo = TRUE,fig.height=8,fig.width=12,fig.pos = 'h')
+options(width=1500)
+```
+
+```{r library_setup, include=FALSE}
+suppressMessages({suppressWarnings({
+    library(dplyr)
+    library(tidyr)
+    library(readr)
+    library(lubridate)
+    library(here)
+    
+    library(ggplot2)
+#    library(scales)
+    library(ggridges)
+    library(RobsRUtils)
+    library(pander)
+    library(kableExtra)
+
+})})
+```
+
+
+# Introduction
+
+My notes on using git as a data scientist. In other words you *know and accept* you 
+should be using git but man is it confusing and almost painful. \small\shrug\normalsize
+
+I've been a software developer and data scientist for more than 30 years and I've used
+all sorts of version control systems (started with Apollo DSEE, look that one up). I find
+git confusing.
+
+
+# Moving from SVN to Git
+
+
+* https://smartbear.com/blog/migrating-from-subversion-to-git-lessons-learned/
+
+* https://dev.to/fpuffer/what-makes-companies-switch-from-svn-to-git-3687
+
+* https://ohshitgit.com/
+
+# Git setup in general
+
+* https://happygitwithr.com/
+
+* https://happygitwithr.com/git-intro.html
+
+
+
+# Lightbulb Moments
+
+## Switching back and forth between main and branches
+
+This is from the world famous Jenny Bryan \footnote{
+If you don't know who she is look at this link
+\url{https://www.rstudio.com/speakers/jenny-bryan/}
+and follow her on twitter: @JennyBryan.}
+
+* https://happygitwithr.com/git-branches.html Section 22.2
+
+So you *can* do it and yes git __stash__ is a way but she recommends
+the same idea I had read somewhere else about *always* doing a commit
+even if it is just with the comment 'WIP xxx'. But she then
+goes on to explain how you can get rid of that temporary commit using
+terminal (bash) commands like:
+
+```{bash eval=FALSE}
+$ git checkout issue-5
+$ git reset HEAD^
+```
+
+
+## Merge conflicts
+
+* https://happygitwithr.com/git-branches.html Section 22.4
+
+
+# Daily routine
+
+```{bash, attr.source='.numberLines', eval=FALSE}
+# fetch the changes from the remote
+$ git fetch origin
+
+# show commit logs of changes
+$ git log master..origin/master
+
+# show diffs of changes
+$ git diff master..origin/master
+
+# apply the changes by merge..
+$ git merge origin/master
+
+# .. or just pull the changes
+$ git pull
+```
+
+
+# How Do I Compare Two PDF Output Files
+
+Well you would think this is easy eh? But the problem is the fact that it is a .pdf file
+i.e. __*not*__ a text file. So what you need to do is get the older version's commit SHA1
+and then extract that particular commit to somewhere different. Note this command below
+is extracting the *whole folder structure* at the point in time from your SHA1.
+
+From this link:
+
+* https://stackoverflow.com/questions/11018411/how-do-i-export-a-specific-commit-with-git-archive
+
+
+```{bash eval=FALSE}
+$ git archive --format zip --output ./CompareResults/Cmp-01.zip 4081d45d
+```
+
+Using the above command you have the whole repo as at SHA1 ```4081d45d``` in the zip file ```Cmp-01.zip```
+
+You can of course just pull out a specific file using this command:
+
+```{bash eval=FALSE}
+$ git archive --format zip --output ./CompareResults/SingleFile.zip 4081d45d Prospec_Stg_1_N69_ELvsDP.pdf
+```
+
+

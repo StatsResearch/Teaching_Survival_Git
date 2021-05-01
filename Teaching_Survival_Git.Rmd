@@ -142,4 +142,12 @@ You can of course just pull out a specific file using this command:
 $ git archive --format zip --output ./CompareResults/SingleFile.zip 4081d45d Prospec_Stg_1_N69_ELvsDP.pdf
 ```
 
+# Getting Info
 
+Sometimes you just wish you could ask a simple question \small\shrug\normalsize.
+
+## Order the branches by time and give me some context
+
+```{bash eval=FALSE}
+$ git branch -vv --sort=-committerdate
+```

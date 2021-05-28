@@ -21,7 +21,7 @@ urlcolor: blue
 ```{r setup, include=FALSE}
 # The fig.pos = 'h' tells LaTeX to put the figure where you ask for it
 knitr::opts_chunk$set(echo = TRUE,fig.height=8,fig.width=12,fig.pos = 'h')
-options(width=1500)
+options(width=80)
 ```
 
 ```{r library_setup, include=FALSE}
@@ -118,6 +118,42 @@ $ git pull
 ```
 
 
+# Marking Something as Significant (git tag)
+
+If you want to be able to refer to a commit without using the odd looking SHA1 you 
+need to use git tag. You do this __*after*__ the commit which you want to mark.
+
+```{bash eval=FALSE}
+$ git tag -a v1.4 -m "my version 1.4"
+```
+
+Don't put quotes round the -a bit 
+
+* https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag
+
+Then once you have done that you need to ```push``` the tag up to the remote.
+
+```{bash eval=FALSE}
+$ git push --tags
+```
+
+If you just want to see what tags you have
+
+```{bash eval=FALSE}
+$ git tag -l
+```
+
+Which only give you the tag 'ref name'
+
+What you probably wanted was this
+
+```{bash eval=FALSE}
+$ git tag --format "%(refname:short) | %(taggerdate:iso) [%(contents:subject)]" 
+  --sort=-taggerdate:iso
+```
+
+Do the above all on one line. How painful is that \small\shrug\normalsize.
+
 # How Do I Compare Two PDF Output Files
 
 Well you would think this is easy eh? But the problem is the fact that it is a .pdf file
@@ -151,3 +187,32 @@ Sometimes you just wish you could ask a simple question \small\shrug\normalsize.
 ```{bash eval=FALSE}
 $ git branch -vv --sort=-committerdate
 ```
+
+
+## Find out what branch a commit came from 
+
+This command also shows you what branches it is in
+
+```{bash eval=FALSE}
+$ git branch --contains ec0b406e -vv --sort=-committerdate
+```
+
+Where the ```ec0b406e``` is the SHA1 hash you are interested in. The output is reverse 
+time ordered so look for the bottom one to see where it started out in life.
+
+## Is my file being tracked by git?
+
+The simple answer is:
+
+```{bash eval=FALSE}
+$ git ls-files
+```
+
+As you'll probably expect by now you can get an uber nerd answer as well, see this:
+
+* https://stackoverflow.com/questions/15606955/how-can-i-make-git-show-a-list-of-the-files-that-are-being-tracked/15606998
+
+## Tag Info
+
+
+* https://stackoverflow.com/questions/13208734/get-the-time-and-date-of-git-tags

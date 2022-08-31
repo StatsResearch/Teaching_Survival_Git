@@ -154,6 +154,35 @@ $ git tag --format "%(refname:short) | %(taggerdate:iso) [%(contents:subject)]"
 
 Do the above all on one line. How painful is that \small\shrug\normalsize.
 
+
+
+## Tagging A Specific Commit (with the correct date)
+
+Sometime you may want to clean things up by putting a tag on an *older* commit
+and make it fit in with some naming scheme you have come up with. This link
+and bash code snippet will do that *importantly making the tag use the correct
+date of the older commit*.
+
+See this link
+
+* https://stackoverflow.com/questions/4404172/how-to-tag-an-older-commit-in-git/21759466#21759466
+
+```{}
+# Set the HEAD to the old commit that we want to tag
+git checkout 9fceb02
+
+# temporarily set the date to the date of the HEAD commit, and add the tag
+GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" \
+git tag -a v1.2 -m"v1.2"
+
+# push to origin
+git push origin --tags
+
+# set HEAD back to whatever you want it to be
+git checkout master
+```
+
+
 # How Do I Compare Two PDF Output Files
 
 Well you would think this is easy eh? But the problem is the fact that it is a .pdf file

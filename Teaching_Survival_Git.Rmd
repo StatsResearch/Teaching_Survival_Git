@@ -172,8 +172,11 @@ See this link
 git checkout 9fceb02
 
 # temporarily set the date to the date of the HEAD commit, and add the tag
-GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" \
+GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" \  <--- NOTE The line continuation
 git tag -a v1.2 -m"v1.2"
+
+# I.E the above two lines are a SINGLE line at the command prompt.
+# TWO commands will not work.
 
 # push to origin
 git push origin --tags

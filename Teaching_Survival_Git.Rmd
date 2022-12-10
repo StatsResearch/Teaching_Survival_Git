@@ -117,6 +117,22 @@ $ git merge origin/master
 $ git pull
 ```
 
+# I Just Want To Rename A File (git mv)
+
+Hold on to your hat.
+
+1. Make sure everything is commited i.e. you don't have any work in progress.
+2. Use the ```git mv``` command
+    * % git mv -v old-name.R new-name.R
+    * Using ```git mv``` rather than just ```mv``` means the file is 
+    automatically 'staged' for you. All you need to do now is ```commit`` it with
+    a suitable message.
+3. Do a git status to double check
+    * % git status
+4. Do the commit
+    * % git commit -m"Renamed file"
+    * (*you could of course use the RStudio Git menus for this bit*)
+
 
 # Marking Something as Significant (git tag)
 

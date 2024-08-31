@@ -68,7 +68,12 @@ git confusing.
 
 * https://happygitwithr.com/git-intro.html
 
+## GitHub Access Tokens
 
+Github now requires you to use personal access tokens (PATs). These are a bit of a pain
+but described by Jenny Bryan here:
+
+* https://happygitwithr.com/https-pat
 
 # Lightbulb Moments
 

@@ -75,6 +75,52 @@ but described by Jenny Bryan here:
 
 * https://happygitwithr.com/https-pat
 
+## GitHub Push Issues
+
+Today (2024-08-31) I was setting up a new repo with admittedly some large `.graffle` files.
+I got this error
+
+```{}
+rob@Taylor Platform_Terrace_Shed % git push -u origin main
+Enumerating objects: 69, done.
+Counting objects: 100% (69/69), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (69/69), done.
+error: RPC failed; HTTP 400 curl 22 The requested URL returned error: 400
+send-pack: unexpected disconnect while reading sideband packet
+Writing objects: 100% (69/69), 11.63 MiB | 19.02 MiB/s, done.
+Total 69 (delta 25), reused 0 (delta 0), pack-reused 0
+fatal: the remote end hung up unexpectedly
+Everything up-to-date
+
+```
+
+This happened in RStudio and in a Mac Terminal window. Over to stackoverflow to this link
+
+* \url{https://stackoverflow.com/questions/78590144/while-cloning-the-git-repository-getting-unexpected-disconnect-while-reading-sid}
+
+Which says increase a git config setting. So I did that and everyone is happy.
+
+```{}
+rob@Taylor Platform_Terrace_Shed % git config http.postBuffer 10g
+
+
+rob@Taylor Platform_Terrace_Shed % git push -u origin main       
+Enumerating objects: 69, done.
+Counting objects: 100% (69/69), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (69/69), done.
+Writing objects: 100% (69/69), 11.63 MiB | 46.15 MiB/s, done.
+Total 69 (delta 25), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (25/25), done.
+To https://github.com/StatsResearch/Platform_Terrace_Shed.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+rob@Taylor Platform_Terrace_Shed % 
+```
+
+
+
 # Lightbulb Moments
 
 ## Switching back and forth between main and branches

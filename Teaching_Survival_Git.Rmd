@@ -315,3 +315,59 @@ As you'll probably expect by now you can get an uber nerd answer as well, see th
 
 
 * https://stackoverflow.com/questions/13208734/get-the-time-and-date-of-git-tags
+
+## Am I connected to a remote?
+
+This is most likely to be GitHub.
+
+```{bash eval=FALSE}
+$ git remote -v
+```
+
+This should get you something like:
+
+```{bash eval=FALSE}
+Taylor:Teaching_Survival_Git rob$ git remote -v
+origin  https://github.com/StatsResearch/Teaching_Survival_Git.git (fetch)
+origin  https://github.com/StatsResearch/Teaching_Survival_Git.git (push)
+Taylor:Teaching_Survival_Git rob$ 
+```
+
+Note that if you are *not* connected to a remote you get no output from the command.
+Which might be hard to spot.
+
+Another way to do it is to use the command
+
+```{bash eval=FALSE}
+$ git remote show origin
+```
+
+This will give you something like this if you are connected to a remote
+
+```{}
+Taylor:Teaching_Survival_Git rob$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/StatsResearch/Teaching_Survival_Git.git
+  Push  URL: https://github.com/StatsResearch/Teaching_Survival_Git.git
+  HEAD branch: main
+  Remote branch:
+    main tracked
+  Local branch configured for 'git pull':
+    main merges with remote main
+  Local ref configured for 'git push':
+    main pushes to main (up to date)
+Taylor:Teaching_Survival_Git rob$ 
+
+```
+
+If you are *not* connected to a remote you'll get this slightly scary output
+but it at least tells you something.
+
+```{}
+Taylor:GaggiaClassic rob$ git remote show origin
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```

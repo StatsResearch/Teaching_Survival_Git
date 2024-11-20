@@ -1,0 +1,87 @@
+---
+title: "Teaching Survival Git Running Log"
+subtitle: "Public GitHub Repo"
+author: "Rob Donald"
+
+date: today
+date-format: "dddd DD MMMM YYYY"
+format:
+    pdf:
+        toc: true
+        toc-depth: 2
+        number-sections: false
+        lot: false
+        lof: false
+        colorlinks: true
+        code-block-bg: 'ffffcc' # fafad2 lightgoldenrodyellow, ffffcc web safe
+        papersize: a4
+        include-in-header: 
+            text: \addtokomafont{disposition}{\rmfamily}
+                  \usepackage{amsmath} 
+                  \numberwithin{equation}{subsection}
+                  \usepackage{xurl}
+                              
+bibliography: ../../PostDocMaster.bib
+cite-method: biblatex
+biblatexoptions:
+  - citestyle = authoryear
+  - style = authoryear
+  - urldate = iso
+  - datezeros = true
+  - natbib = true
+  - sorting = nty
+---
+
+
+
+```{=tex}
+\def\shrug{\texttt{\raisebox{0.75em}{\char`\_}\char`\\\char`\_\kern-0.5ex(\kern-0.25ex\raisebox{0.25ex}
+{\rotatebox{45}{\raisebox{-.75ex}"\kern-1.5ex\rotatebox{-90})}}\kern-0.5ex)\kern-0.5ex\char`\_/\raisebox{0.75em}
+{\char`\_}}}
+```
+
+```{r}
+#| label: "library_setup"
+#| include: false
+
+suppressMessages({suppressWarnings({
+    library(dplyr)
+    library(tidyr)
+    library(readr)
+    library(lubridate)
+    library(here)
+    library(tibble)
+    
+    library(ggplot2)
+    library(RobsRUtils)
+    library(pander)
+
+    library(kableExtra)
+
+})})
+```
+
+
+
+\newpage
+# Executive Summary
+
+A running log of my work on trying to make sense of Git (@Torvalds_2005)
+
+# Background
+
+I occasionally write notes to myself about a topic that I think other folk 
+might find useful.
+
+# 2024-11-20
+
+Set up the project.
+
+Start running log
+
+Convert to Quarto
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

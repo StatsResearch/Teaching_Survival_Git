@@ -87,6 +87,8 @@ Convert to Quarto
 
 Test for new git PAT.
 
+And again because of poor Github docs \shrug.
+
 # References {.unnumbered}
 
 ::: {#refs}

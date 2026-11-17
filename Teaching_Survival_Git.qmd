@@ -161,6 +161,33 @@ $ git reset HEAD^
 
 * \url{https://happygitwithr.com/git-branches.html} Section 22.4
 
+## Creating a Branch
+
+You create a branch *from where ever you are*. So be careful if you have been 
+working in some other branch that you commit all your work and then switch back
+to the "main" branch. This will ensure you are working off a (presumably) stable
+position.
+
+Also remember that 
+
+```{bash eval=FALSE}
+$ git branch whatever
+```
+
+Only creates the branch, you then need to do a checkout (or switch) to get there
+
+```{bash eval=FALSE}
+$ git checkout whatever
+
+or
+
+$ git switch whatever
+```
+
+What's the difference \shrug. Short Answer: Nothing for normal use. If you *really* want to know 
+have a look at this \url{https://stackoverflow.com/questions/57265785/whats-the-difference-between-git-switch-and-git-checkout-branch}
+
+
 
 # Daily routine
 
@@ -263,6 +290,22 @@ git push origin --tags
 # set HEAD back to whatever you want it to be
 git checkout master
 ```
+
+# How So I Get An Older Version of a File
+
+All I want is a previous version saved under a new name so that I can
+look at it?
+
+```{bash eval=FALSE}
+$ git show SHA-You-Want:File-You-Want > New-File-Name
+
+Here's an example
+
+$git show 3497d8c559:Multiple_Core_TLC.R > Multiple_Core_NoPackage_TLC.R 
+```
+
+As a bit of an aside, you don't have to put in the full SHA for this to work, 
+see this link \url{https://stackoverflow.com/questions/18134627/how-much-of-a-git-sha-is-generally-considered-necessary-to-uniquely-identify-a}
 
 
 # How Do I Compare Two PDF Output Files
